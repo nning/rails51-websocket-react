@@ -1,8 +1,14 @@
 class Company < ApplicationRecord
   before_save :update_key
-  after_save :broadcast
+
+  after_save    -> { broadcast :save }
+  after_destroy -> { broadcast :destroy }
 
   default_scope { order :id }
+
+  def change
+    change!
+  end
 
   def change!
     self.name     = Faker::Company.name
@@ -18,7 +24,7 @@ class Company < ApplicationRecord
     self.key = SecureRandom.uuid
   end
 
-  def broadcast
-    ActionCable.server.broadcast :company_updates, self
+  def broadcast(action)
+    ActionCable.server.broadcast(:company_updates, [action, self])
   end
 end

@@ -7,20 +7,40 @@ class CompanyList extends React.Component {
     };
   }
 
+  getIndex(companies, updatedCompany) {
+    for (let [i, company] of companies.entries()) {
+      if (company.id === updatedCompany.id) return i;
+    }
+
+    return null;
+  }
+
   componentDidMount() {
     App.cable.subscriptions.create(
       {
         channel: 'CompanyUpdatesChannel'
       },
       {
-        received: (newCompany) => {
+        received: (update) => {
+          let [action, updatedCompany] = update;
           let companies = this.state.companies;
 
-          for (let [i, company] of companies.entries()) {
-            if (company.id === newCompany.id) {
-              companies[i] = newCompany;
+          if (!updatedCompany) return;
+
+          let i = this.getIndex(companies, updatedCompany);
+
+          switch(action) {
+            case 'save':
+              if (i == null) {
+                companies.push(updatedCompany);
+              } else {
+                companies[i] = updatedCompany;
+              }
               break;
-            }
+
+            case 'destroy':
+              companies.splice(i, 1);
+              break;
           }
 
           this.setState({companies: companies});
