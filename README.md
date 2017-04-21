@@ -1,24 +1,8 @@
-# README
+# Rails 5.1, WebSocket, React Prototype
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application demonstrates the integration of Rails 5.1, ActionCable
+(WebSocket), and React to accomplish client live updates via server push.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+PostgreSQL and redis servers are required. Run `rake db:seed` to generate
+sample data and `rails runner 'Company.first.change!'` to change a random
+Company.

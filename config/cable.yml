@@ -1,10 +1,15 @@
-development:
-  adapter: async
-
-test:
-  adapter: async
-
-production:
+default: &default
   adapter: redis
   url: redis://localhost:6379/1
-  channel_prefix: rails51-websocket-react2_production
+
+development:
+  <<: *default
+  channel_prefix: r51wr_development
+
+test:
+  <<: *default
+  channel_prefix: r51wr_test
+
+production:
+  <<: *default
+  channel_prefix: r51wr_production
