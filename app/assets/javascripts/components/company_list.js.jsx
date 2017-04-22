@@ -32,8 +32,10 @@ class CompanyList extends React.Component {
           switch(action) {
             case 'save':
               if (i == null) {
+                updatedCompany.status = 'created';
                 companies.push(updatedCompany);
               } else {
+                updatedCompany.status = 'updated';
                 companies[i] = updatedCompany;
               }
               break;

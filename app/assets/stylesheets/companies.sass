@@ -4,7 +4,7 @@
 
 .company
   overflow: auto
-  padding: .75rem
+  transition: background-color ease-in-out 1s
 
   .logo
     float: left
@@ -21,5 +21,14 @@
     .slogan
       font-style: italic
 
-  &:hover
-    background-color: #eee
+  &.updated
+    background-color: #ffd
+
+  &.created
+    background-color: #dfd
+
+  &__inner
+    padding: .75rem
+
+    &:hover
+      background-color: #eee
