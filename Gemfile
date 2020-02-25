@@ -6,16 +6,16 @@ git_source(:github) do |repo_name|
 end
 
 
-gem 'rails', '~> 5.1.0.rc2'
+gem 'rails', '~> 5.1.0.0'
 
 # gem 'therubyracer', platforms: :ruby
-gem 'factory_girl_rails'
+gem 'factory_girl_rails', '>= 4.8.0'
 gem 'faker'
 gem 'pg'
 gem 'puma', '~> 3.7'
-gem 'react-rails'
+gem 'react-rails', '>= 2.1.0'
 gem 'redis'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
 
